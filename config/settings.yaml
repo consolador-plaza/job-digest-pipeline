@@ -1,0 +1,50 @@
+google:
+
+    spreadsheet_name: Daily Job Digest
+
+    digest_sheet: Daily Job Digest
+
+    diagnostics_sheet: Parser Diagnostics
+
+
+backfill:
+
+    enabled: true
+
+    limit: 50
+
+runtime:
+
+    timezone: Asia/Manila
+
+logging:
+
+    app_log: logs/app.log
+
+    duplicates_csv: logs/duplicates.csv
+
+    failures_csv: logs/failures.csv
+
+    unknown_csv: logs/unknown_templates.csv
+
+gmail:
+
+  source_label: Jobs
+
+  processed_label: Jobs Processed
+
+  failed_label: Jobs Failed
+
+
+sheets:
+
+  workbook: Daily Job Digest
+
+  run_history: RunHistory
+
+  parser_health: ParserHealth
+
+
+pipeline:
+
+  retry_count: 3
