@@ -27,3 +27,5 @@ config/local.yaml
 .env
 
 *.zip
+
+.vscode/
