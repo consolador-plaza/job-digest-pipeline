@@ -1,3 +1,9 @@
+![Python](https://img.shields.io/badge/python-3.11-blue)
+
+![Status](https://img.shields.io/badge/status-active-green)
+
+![License](https://img.shields.io/badge/license-MIT-yellow)
+
 # Job Digest Pipeline
 
 Automated Gmail-to-Google-Sheets job aggregation pipeline.
