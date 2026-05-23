@@ -6,116 +6,42 @@ import time
 
 from gspread.exceptions import APIError
 
+from export.sheets_client import SheetsClient
+
+from export.sheet_initializer import SheetInitializer
+
 class SheetsExporter:
 
+    def __init__(
 
-    SCOPES = [
-
-        "https://www.googleapis.com/auth/spreadsheets",
-
-        "https://www.googleapis.com/auth/drive"
-    ]
+        self
+    ):
 
 
-    def connect(self):
+        client = (
 
-        creds = Credentials.from_service_account_file(
+            SheetsClient()
 
-            "credentials/service_account.json",
-
-            scopes=self.SCOPES
-        )
-
-        return gspread.authorize(
-            creds
+            .connect()
         )
 
 
-    def ensure_sheets(self):
+        self.book = (
 
+            client
 
-        client = self.connect()
+            .open(
 
-
-        book = client.open(
-            "Daily Job Digest"
+                "Daily Job Digest"
+            )
         )
 
 
-        existing = [
+        SheetInitializer().ensure(
 
-            x.title
-
-            for x in book.worksheets()
-        ]
-
-
-        if "Daily Job Digest" not in existing:
-
-            ws = book.add_worksheet(
-
-                title="Daily Job Digest",
-
-                rows=100,
-
-                cols=10
-            )
-
-            ws.append_row(
-
-                [
-
-                    "Timestamp",
-
-                    "Role",
-
-                    "Company",
-
-                    "Source",
-
-                    "Link",
-
-                    "Unique Key"
-                ]
-
-            )
-
-
-        if "Parser Diagnostics" not in existing:
-
-            ws = book.add_worksheet(
-
-                title="Parser Diagnostics",
-
-                rows=100,
-
-                cols=10
-            )
-
-            ws.append_row(
-
-                [
-
-                    "Timestamp",
-
-                    "Provider",
-
-                    "Email File",
-
-                    "Issue Type",
-
-                    "Details",
-
-                    "Status"
-                ]
-
-            )
-
-
-        print(
-            "Worksheets ready"
+            self.book
         )
-        
+       
     def append_jobs(
 
         self,
@@ -123,16 +49,10 @@ class SheetsExporter:
         jobs
     ):
 
-
-        book = self.connect().open(
+        ws = (self.book.worksheet(
 
             "Daily Job Digest"
         )
-
-
-        ws = book.worksheet(
-
-            "Daily Job Digest"
         )
 
 
@@ -195,23 +115,9 @@ class SheetsExporter:
 
             try:
 
-
-                book = (
-
-                    self
-
-                    .connect()
-
-                    .open(
-
-                        "Daily Job Digest"
-                    )
-                )
-
-
                 ws = (
 
-                    book
+                    self.book
 
                     .worksheet(
 
@@ -270,17 +176,7 @@ class SheetsExporter:
     ):
 
 
-        book = (
-
-            self
-
-            .connect()
-
-            .open(
-
-                "Daily Job Digest"
-            )
-        )
+        book = self.book
 
 
         existing = [

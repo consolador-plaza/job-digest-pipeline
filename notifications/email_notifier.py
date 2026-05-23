@@ -49,27 +49,6 @@ class EmailNotifier:
             "NOTIFY_TO"
         )
 
-        print(
-            "EMAIL:",
-            os.getenv(
-                "NOTIFY_EMAIL"
-            )
-        )
-
-        print(
-            "PASS:",
-            os.getenv(
-                "NOTIFY_PASSWORD"
-            )
-        )
-
-        print(
-            "TO:",
-            os.getenv(
-                "NOTIFY_TO"
-            )
-        )
-
 
     def send(
 

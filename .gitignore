@@ -5,14 +5,11 @@ venv/
 .venv/
 
 logs/
-state/
 
 emails/incoming/
 emails/processed/
 
 fixtures/
-
-archive/
 
 token.json
 
@@ -29,3 +26,7 @@ config/local.yaml
 *.zip
 
 .vscode/
+
+archive/*.eml
+
+state/*.json

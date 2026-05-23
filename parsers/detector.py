@@ -11,6 +11,36 @@ from parsers.glassdoor import GlassdoorParser
 class ParserDetector:
 
 
+    def __init__(
+
+        self
+    ):
+
+
+        self.linkedin = (
+
+            LinkedInParser()
+        )
+
+
+        self.jobstreet = (
+
+            JobStreetParser()
+        )
+
+
+        self.indeed = (
+
+            IndeedParser()
+        )
+
+
+        self.glassdoor = (
+
+            GlassdoorParser()
+        )
+
+
     def detect(
 
         self,
@@ -26,31 +56,12 @@ class ParserDetector:
                 "From",
 
                 ""
+
             )
 
             .lower()
         )
 
-
-        subject = (
-
-            payload.get(
-
-                "Subject",
-
-                ""
-            )
-
-            .lower()
-        )
-
-
-        print()
-
-
-        #
-        # LinkedIn
-        #
 
         if (
 
@@ -62,13 +73,8 @@ class ParserDetector:
         ):
 
 
+            return self.linkedin
 
-            return LinkedInParser()
-
-
-        #
-        # JobStreet
-        #
 
         if (
 
@@ -80,13 +86,8 @@ class ParserDetector:
         ):
 
 
+            return self.jobstreet
 
-            return JobStreetParser()
-
-
-        #
-        # Indeed
-        #
 
         if (
 
@@ -98,13 +99,8 @@ class ParserDetector:
         ):
 
 
+            return self.indeed
 
-            return IndeedParser()
-
-
-        #
-        # Glassdoor
-        #
 
         if (
 
@@ -116,7 +112,7 @@ class ParserDetector:
         ):
 
 
-            return GlassdoorParser()
+            return self.glassdoor
 
 
         print(
