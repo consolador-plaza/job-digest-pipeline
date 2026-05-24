@@ -131,7 +131,7 @@ class SheetsExporter:
                     ws
 
                     .col_values(
-                        5
+                        6
                     )
                 )
 
